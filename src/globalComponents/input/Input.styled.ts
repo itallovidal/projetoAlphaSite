@@ -23,6 +23,10 @@ export const FieldWrapper = styled.div<IFieldWrapper>`
     }
   }
   
+  input#uf{
+    text-transform: uppercase;
+  }
+  
   span{
     margin-bottom: 1rem;
     color: red;

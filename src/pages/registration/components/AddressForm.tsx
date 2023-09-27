@@ -11,16 +11,16 @@ const schema =  z.object({
     cep:   z.string().min(8, {message: 'CEP precisa de 8 caracteres.'})
             .max(8,{message: 'Máximo de 8 caracteres.'})
             .regex(/\d{5}\d{3}/, {message: 'Digite um cep válido'}),
-    district: z.string()
+    bairro: z.string()
         .min(3, {message:"Mínimo de 3 caracteres."}),
-    UF: z.string({
-        required_error: 'Escreva o UF'
+    uf: z.string({
+        required_error: 'Escreva o uf'
         }).min(2, {message: 'Mínimo de 2 caracteres.'})
         .max(2, {message: 'Máximo de 2 caracteres.'}),
-    street: z.string({
+    rua: z.string({
         required_error: 'Digite a rua, por favor.'
     }).min(3,  {message: 'Pelo menos 3 caracteres.'}),
-    city: z.string().nonempty({message: 'Por favor, coloque a cidade.'})
+    cidade: z.string().nonempty({message: 'Por favor, coloque a cidade.'})
 })
 
 // interface inferida do schema
@@ -30,6 +30,7 @@ export interface IAddressForm extends z.infer<typeof schema>{}
 interface IOutletContext{
     finishForm: (a: IAddressForm)=> void
 }
+
 function AddressForm() {
     const {finishForm} = useOutletContext<IOutletContext>()
     const {register ,formState: {errors}, handleSubmit} = useForm<IAddressForm>({
@@ -38,7 +39,7 @@ function AddressForm() {
 
 
     function handleStep(data: IAddressForm){
-        console.log('submitting form 2')
+        console.log('Address finished')
         finishForm(data)
     }
 
@@ -56,41 +57,42 @@ function AddressForm() {
 
                 <Input <IAddressForm>
                     register={register}
-                    errorMessage={errors.district?.message}
+                    errorMessage={errors.bairro?.message}
                     labelName={'Bairro'}
                     type={'text'}
-                    id={'district'}
+                    id={'bairro'}
                     placeholder={'Ex.: Madureira'}/>
             </Styles.FieldSet>
 
             <Styles.FieldSet>
                 <Input <IAddressForm>
                     register={register}
-                    errorMessage={errors.UF?.message}
+                    errorMessage={errors.uf?.message}
                     proportion={1}
                     labelName={'UF'}
                     type={'text'}
-                    id={'UF'}
+                    id={'uf'}
+                    maxLength={2}
                     placeholder={'Ex.: RJ'}/>
 
                 <Input <IAddressForm>
                     register={register}
-                    errorMessage={errors.street?.message}
+                    errorMessage={errors.rua?.message}
                     proportion={4}
                     labelName={'Rua'}
                     type={'text'}
-                    id={'street'}
+                    id={'rua'}
                     placeholder={'Ex.: Rua santo antônio'}/>
             </Styles.FieldSet>
 
             <Styles.FieldSet>
                 <Input <IAddressForm>
                     register={register}
-                    errorMessage={errors.city?.message}
+                    errorMessage={errors.cidade?.message}
                     proportion={1}
                     labelName={'Cidade'}
                     type={'text'}
-                    id={'city'}
+                    id={'cidade'}
                     placeholder={'Ex.: Rio de Janeiro'}/>
 
                 <div id={'container_button'}>

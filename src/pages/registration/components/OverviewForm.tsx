@@ -9,14 +9,14 @@ import React from "react";
 
 // schema de validacão
 const schema =  z.object({
-    name:   z.string()
+    nome:   z.string()
             .min(3, {message:"Mínimo de 3 caracteres."}),
-    lastName: z.string()
+    sobrenome: z.string()
             .min(3, {message:"Mínimo de 3 caracteres."}),
-    birthday: z.date(),
+    data_nascimento: z.coerce.string(),
     email: z.string()
             .email({message: 'email inválido.'}),
-    telephone: z.string()
+    telefone: z.string()
         .nonempty({message:"Digite o número de celular."})
         .regex(/^\([1-9]{2}\) (?:[2-8]|9[0-9])[0-9]{3}\-[0-9]{4}$/, {message: "Número inválido."})
 })
@@ -47,13 +47,14 @@ function OverviewForm() {
 
     function handleStep(data: IOverviewForm){
         console.log('submitting form')
+        console.log('overview finished')
         finishOverview(data)
     }
 
 
 
     React.useEffect(()=>{
-        const tel = document.querySelector<HTMLInputElement>('#telephone')!
+        const tel = document.querySelector<HTMLInputElement>('#telefone')!
 
         tel.addEventListener('keypress', function (this: HTMLInputElement){
             mascaraTelefone(this, tel);
@@ -72,30 +73,30 @@ function OverviewForm() {
             <Styles.FieldSet>
                 <Input<IOverviewForm>
                     register={register}
-                    errorMessage={errors.name?.message}
+                    errorMessage={errors.nome?.message}
                     labelName={'Nome'}
                     type={'text'}
-                    id={'name'}
+                    id={'nome'}
                     placeholder={'Ex.: João'}/>
 
                 <Input<IOverviewForm>
                     register={register}
-                    errorMessage={errors.lastName?.message}
+                    errorMessage={errors.sobrenome?.message}
                     labelName={'Sobrenome'}
                     type={'text'}
-                    id={'lastName'}
+                    id={'sobrenome'}
                     placeholder={'Ex.: Silva'}/>
             </Styles.FieldSet>
 
             <Styles.FieldSet>
                 <Input <IOverviewForm>
                     register={register}
-                    errorMessage={errors.birthday?.message && 'Selecione uma data.'}
+                    errorMessage={errors.data_nascimento?.message && 'Selecione uma data.'}
                     proportion={1}
                     labelName={'Data de Nascimento'}
                     type={'date'}
-                    id={'birthday'}
-                    placeholder={'Ex.: 10/10/2000'}/>
+                    id={'data_nascimento'}
+                    />
 
                 <Input <IOverviewForm>
                     register={register}
@@ -110,12 +111,12 @@ function OverviewForm() {
             <Styles.FieldSet>
                 <Input <IOverviewForm>
                     register={register}
-                    errorMessage={errors.telephone?.message}
+                    errorMessage={errors.telefone?.message}
                     proportion={1}
                     labelName={'Telefone'}
                     type={'text'}
                     maxLength={15}
-                    id={'telephone'}
+                    id={'telefone'}
                     placeholder={'Ex.: (21) 99999-9999'}/>
 
                 <div id={'container_button'}>

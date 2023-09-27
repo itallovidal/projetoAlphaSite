@@ -1,12 +1,21 @@
 import * as Styles from '../registration.styled.ts';
 import {useOutletContext} from "react-router-dom";
 import {IUser} from "../registration.tsx";
+import React from "react";
+import {postUser} from "../../../utils/API.ts";
 
 function Conclusion() {
     const {userData} = useOutletContext<{userData: IUser}>()
-    console.log(userData)
+    const [loading, setLoading] = React.useState(true)
 
-    return (
+    React.useEffect(()=>{
+        postUser(userData).then((response)=>{
+            console.log(response.status)
+            setLoading(false)
+        })
+    }, [])
+
+    return loading ? null : (
         <Styles.ConclusionWrapper>
             <p>Suas informações foram armazenadas.</p>
 

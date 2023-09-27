@@ -17,7 +17,7 @@ function Input<T extends FieldValues>({register, errorMessage, proportion, label
             <label htmlFor={props.id}>{labelName}</label>
             <input {...props}
                    {...register(props.id as Path<T>, {
-                       valueAsDate: props.id === `birthday`,
+                       valueAsDate: props.id === `data_nascimento`,
                    })}/>
             <span className={errorMessage ? 'errorActive' : undefined}>{errorMessage}</span>
         </Styles.FieldWrapper>

@@ -7,7 +7,11 @@ import React from "react";
 import {IOverviewForm} from "./components/OverviewForm.tsx";
 import {IAddressForm} from "./components/AddressForm.tsx";
 
-export type IUser = IOverviewForm & IAddressForm
+// export type IUser = IOverviewForm & IAddressForm
+
+export interface IUser extends IOverviewForm{
+    endereco: IAddressForm
+}
 function Registration() {
     const navigate = useNavigate()
     const {pathname} = useLocation()
@@ -23,9 +27,9 @@ function Registration() {
 
     function finishForm(data: IAddressForm){
         setUserData((prev)=> {
-            return {...prev, ...data}
+            return {...prev,
+                endereco:{...data}}
         });
-        console.log('received')
         navigate('/conclusion')
     }
 
@@ -46,6 +50,7 @@ function Registration() {
                     </Styles.FormStatus>
 
                 <Outlet context={{finishOverview, finishForm, userData}}/>
+
                 </Styles.FormWrapper>
                 <Styles.BannerWrapper>
                     <picture>
