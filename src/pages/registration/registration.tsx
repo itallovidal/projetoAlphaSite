@@ -1,40 +1,23 @@
 import * as Styles from './registration.styled.ts'
+import {Outlet, useLocation, useParams} from "react-router-dom";
+import {GlobalContext} from "../../context/globalContext.tsx";
+import React from 'react'
 
-import profilePlaceholder from '../../assets/profilePicturePlaceholder.jpg'
 
-import {Outlet, useLocation, useNavigate} from "react-router-dom";
-import React from "react";
-import {IOverviewForm} from "./components/OverviewForm.tsx";
-import {IAddressForm} from "./components/AddressForm.tsx";
 
-// export type IUser = IOverviewForm & IAddressForm
-
-export interface IUser extends IOverviewForm{
-    endereco: IAddressForm
-}
 function Registration() {
-    const navigate = useNavigate()
-    const {pathname} = useLocation()
-    const [userData, setUserData] = React.useState<IUser>({} as IUser)
-    console.log(userData)
-    function finishOverview(data: IOverviewForm ){
-        setUserData((prev)=> {
-            return {...prev, ...data}
-        });
-        console.log('received')
-        navigate('/address')
-    }
+    const {state} = useLocation()
+    const {politic, setID} = React.useContext(GlobalContext)
+    const {id} = useParams()
 
-    function finishForm(data: IAddressForm){
-        setUserData((prev)=> {
-            return {...prev,
-                endereco:{...data}}
-        });
-        navigate('/conclusion')
-    }
+    React.useEffect(()=>{
+        if(id)
+            setID(id)
+    }, [id])
 
 
-    return (
+    return politic
+        ? (
         <Styles.ContentWrapper>
             <Styles.Content>
                 <Styles.FormWrapper>
@@ -43,25 +26,25 @@ function Registration() {
                         <h3>Precisaremos de algumas informações.</h3>
                     </Styles.Header>
 
-                    <Styles.FormStatus step={pathname === '/' ? 1 : pathname === '/address' ? 2 : 3 }>
+                    <Styles.FormStatus step={state === null ? 1 : state === 'address' ? 2 : 3 }>
                         <span>Dados Gerais</span>
                         <span>Endereço</span>
                         <span>Agradecimento</span>
                     </Styles.FormStatus>
 
-                <Outlet context={{finishOverview, finishForm, userData}}/>
+                <Outlet/>
 
                 </Styles.FormWrapper>
                 <Styles.BannerWrapper>
                     <picture>
-                        <img src={profilePlaceholder} alt=""/>
+                        <img src={politic.profile_image} alt=""/>
                     </picture>
 
-                    <label htmlFor="">Nome d. Candidato</label>
+                    <label htmlFor="">{politic.nome}</label>
                 </Styles.BannerWrapper>
             </Styles.Content>
         </Styles.ContentWrapper>
-    );
+    ) : null
 }
 
 export default Registration;

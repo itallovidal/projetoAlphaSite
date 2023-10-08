@@ -2,9 +2,11 @@ import * as Styles from '../registration.styled.ts';
 import {useForm} from "react-hook-form";
 import {z} from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod';
-import {Link, useOutletContext} from "react-router-dom";
+import {Link} from "react-router-dom";
 import Input from "../../../globalComponents/input/Input.tsx";
 import Button from "../../../globalComponents/button/Button.tsx";
+import React from "react";
+import {GlobalContext} from "../../../context/globalContext.tsx";
 
 // schema de validacão
 const schema =  z.object({
@@ -27,16 +29,17 @@ const schema =  z.object({
 export interface IAddressForm extends z.infer<typeof schema>{}
 
 
-interface IOutletContext{
-    finishForm: (a: IAddressForm)=> void
-}
+
 
 function AddressForm() {
-    const {finishForm} = useOutletContext<IOutletContext>()
-    const {register ,formState: {errors}, handleSubmit} = useForm<IAddressForm>({
+    const {finishForm} = React.useContext(GlobalContext)
+    const {
+        register,
+        formState: {errors},
+        handleSubmit
+    } = useForm<IAddressForm>({
         resolver: zodResolver(schema)
     })
-
 
     function handleStep(data: IAddressForm){
         console.log('Address finished')

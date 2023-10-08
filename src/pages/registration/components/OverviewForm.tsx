@@ -4,8 +4,9 @@ import * as Styles from '../registration.styled.ts';
 import {useForm} from "react-hook-form";
 import {z} from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod';
-import {useOutletContext} from "react-router-dom";
 import React from "react";
+import {GlobalContext} from "../../../context/globalContext.tsx";
+import {mascaraTelefone} from "../../../utils/inputMasks.ts";
 
 // schema de validacão
 const schema =  z.object({
@@ -25,32 +26,20 @@ const schema =  z.object({
 export interface IOverviewForm extends z.infer<typeof schema>{}
 
 
-interface IOutletContext{
-    finishOverview: (a: IOverviewForm)=> void
-}
-
-function mascaraTelefone(e: HTMLInputElement, tel: HTMLInputElement) {
-
-    let valor = e.value
-    valor = valor.replace(/\D/g, "")
-    valor = valor.replace(/^(\d{2})(\d)/g, "($1) $2")
-    valor = valor.replace(/(\d)(\d{4})$/, "$1-$2")
-    tel.value = valor // Insere o(s) valor(es) no campo
-}
-
 
 function OverviewForm() {
-    const {finishOverview} = useOutletContext<IOutletContext>()
-    const {register ,formState: {errors}, handleSubmit} = useForm<IOverviewForm>({
+    const {finishOverview} = React.useContext(GlobalContext)
+    const {
+        register,
+        formState: {errors},
+        handleSubmit
+    } = useForm<IOverviewForm>({
         resolver: zodResolver(schema)
     })
 
     function handleStep(data: IOverviewForm){
-        console.log('submitting form')
-        console.log('overview finished')
         finishOverview(data)
     }
-
 
 
     React.useEffect(()=>{
@@ -69,7 +58,6 @@ function OverviewForm() {
 
     return (
         <Styles.Form onSubmit={handleSubmit(handleStep)}>
-
             <Styles.FieldSet>
                 <Input<IOverviewForm>
                     register={register}

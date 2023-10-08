@@ -4,10 +4,11 @@ import {show} from "../../styles/global.styled.ts";
 export const ContentWrapper = styled.main`
   padding: 5rem;
   overflow: hidden;
+  height: 70vh;
 
-  @media(max-width: 1020px){
-    height: auto;
-  }
+  //@media(max-width: 1020px){
+  //  height: auto;
+  //}
 
   @media(max-width: 739px){
     padding: 0;
@@ -91,15 +92,6 @@ export const FormStatus = styled.div<FormStatusProps>`
     margin-bottom: 2rem;
   }
 
-  // &:before{
-  //   position: absolute;
-  //   content: '';
-  //   right: -20px;
-  //   width: 3px;
-  //   height: 100%;
-  //   opacity: .4;
-  //   background-color: ${({theme})=> theme.COLORS.PRIMARY};
-  // }
   
   span{
     opacity: .2;
@@ -211,4 +203,10 @@ export const ConclusionWrapper = styled.main`
   p{
     margin-bottom: 2rem;
   }
+`
+
+export const Socials = styled.main`
+    a{
+      color: black;
+    }
 `

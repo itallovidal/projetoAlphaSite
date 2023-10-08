@@ -58,6 +58,10 @@ export const SocialMediaWrapper = styled.div`
 export const SocialMediaIcons = styled.div`
   gap: 1rem;
   display: flex;
+  
+  a{
+    color: white;
+  }
 `
 
 export const Contact = styled.div`

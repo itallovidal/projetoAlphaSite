@@ -7,20 +7,23 @@ import Footer from "./globalComponents/footer/Footer.tsx";
 import OverviewForm from "./pages/registration/components/OverviewForm.tsx";
 import AddressForm from "./pages/registration/components/AddressForm.tsx";
 import Conclusion from "./pages/registration/components/Conclusion.tsx";
+import GlobalContextProvider from "./context/globalContext.tsx";
 
 function App() {
 
   return (
     <ThemeProvider theme={mainTheme}>
         <BrowserRouter>
-            <Routes>
-                <Route path={'/'} element={<Registration/>}>
-                    <Route index element={<OverviewForm/>}/>
-                    <Route path={'address'} element={<AddressForm/>}/>
-                    <Route path={'conclusion'} element={<Conclusion/>}/>
-                </Route>
-            </Routes>
-            <Footer/>
+            <GlobalContextProvider>
+                <Routes>
+                    <Route path={'/:id'} element={<Registration/>}>
+                        <Route index element={<OverviewForm/>}/>
+                        <Route path={'address'} element={<AddressForm/>}/>
+                        <Route path={'conclusion'} element={<Conclusion/>}/>
+                    </Route>
+                </Routes>
+                <Footer/>
+            </GlobalContextProvider>
         </BrowserRouter>
         <GlobalStyles/>
     </ThemeProvider>
