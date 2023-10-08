@@ -12,6 +12,7 @@ export const ContentWrapper = styled.main`
 
   @media(max-width: 739px){
     padding: 0;
+    height: auto;
   }
 `
 

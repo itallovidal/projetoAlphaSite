@@ -25,9 +25,9 @@ function Footer() {
                         {/*<TwitterLogo size={32} weight="light" />*/}
                     </Styles.SocialMediaIcons>
 
-                    <picture>
-                        {/*<img src={voteIcon} alt=""/>*/}
-                    </picture>
+                    {/*<picture>*/}
+                    {/*    /!*<img src={voteIcon} alt=""/>*!/*/}
+                    {/*</picture>*/}
                 </Styles.SocialMediaWrapper>
 
                 <Styles.Contact>
