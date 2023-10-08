@@ -22,7 +22,7 @@ function Registration() {
             <Styles.Content>
                 <Styles.FormWrapper>
                     <Styles.Header>
-                        <h1>{id}</h1>
+                        <h1>{JSON.stringify(politic)}</h1>
                         <h3>Precisaremos de algumas informações.</h3>
                     </Styles.Header>
 
