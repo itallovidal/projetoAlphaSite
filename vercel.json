@@ -1,12 +1,8 @@
 {
   "routes": [
-    { "src": "/:id", "dest": "/" }
-  ],
-"author": "",
-  "config": {},
-  "createAt": "",
-  "homepage": "",
-  "identifier": "",
-  "meta": {},
-  "schemaVersion": 0
+    {
+      "src": "/:id",
+      "dest": "/"
+    }
+  ]
 }
