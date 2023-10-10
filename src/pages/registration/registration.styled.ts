@@ -32,7 +32,7 @@ export const Content = styled.article`
   @media(max-width: 739px){
     gap: 0;
     width: 90%;
-    
+    height: auto;
   }
 `
 
