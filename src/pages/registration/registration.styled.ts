@@ -113,8 +113,18 @@ export const BannerWrapper = styled.div`
   justify-content: flex-start;
   padding-top: 2rem;
   gap: 1rem;
-  
   max-width: 14.125rem;
+  
+  picture{
+    max-width: 300px;
+    max-height: 300px;
+
+    img{
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+  }
 
   @media(min-width: 740px) and (max-width: 1020px){
     grid-row: 1/2;
