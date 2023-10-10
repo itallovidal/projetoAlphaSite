@@ -6,7 +6,7 @@ export async function postUser(data : IUser, collection_id: string){
 
     console.log(data)
 
-    const response = await fetch(`http://localhost:3333/voters/${collection_id}`, {
+    const response = await fetch(`https://projetoalphaapi.onrender.com/voters/${collection_id}`, {
         method: 'POST',
         cache: "no-cache",
         headers:{
