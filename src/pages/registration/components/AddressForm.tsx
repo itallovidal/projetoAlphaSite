@@ -56,6 +56,7 @@ function AddressForm() {
                     labelName={'CEP'}
                     type={'text'}
                     id={'cep'}
+                    maxLength={8}
                     placeholder={'Ex.: 21320340'}/>
 
                 <Input <IAddressForm>

@@ -179,6 +179,10 @@ export const FieldSet = styled.fieldset`
   padding: 0;
   justify-content: space-between;
 
+  #rua, #cidade{
+    text-transform: capitalize;
+  }
+  
   #container_button{
     display: flex;
     gap: 1rem;
