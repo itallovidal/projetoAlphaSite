@@ -1,5 +1,5 @@
 import React, {ReactNode} from "react";
-import {getPolitic, postUser} from "../utils/API.ts";
+import {postUser} from "../utils/API.ts";
 import {useNavigate} from "react-router-dom";
 import {IGlobalContext, IPolitic, IUser} from "../@types/interfaces";
 import {IOverviewForm} from "../pages/registration/components/OverviewForm.tsx";
@@ -16,22 +16,8 @@ function GlobalContextProvider({children} : GlobalContextProps){
     const [politic, setPolitic] = React.useState<IPolitic>({} as IPolitic)
     const [userData, setUserData] = React.useState<IUser>({} as IUser)
 
-
-
-    React.useEffect(()=>{
-        if(politic && politic.id){
-            getPolitic(politic.id).then((data)=>{
-                console.log(data)
-                setPolitic(data)
-            })
-        }
-    },[politic.id])
-
-
-    function setID(id: string){
-        setPolitic((prev)=>{
-            return {...prev, id: id}
-        })
+    function setPoliticData(data: IPolitic){
+        setPolitic(data)
     }
     function finishOverview(data: IOverviewForm ){
         setUserData((prev)=> {
@@ -63,7 +49,7 @@ function GlobalContextProvider({children} : GlobalContextProps){
     }
 
     return (
-        <GlobalContext.Provider value={{politic, finishOverview, finishForm, concludeForm, setID}}>
+        <GlobalContext.Provider value={{politic, finishOverview, finishForm, concludeForm, setPoliticData}}>
             {children}
         </GlobalContext.Provider>
     )

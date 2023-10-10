@@ -21,5 +21,5 @@ export interface IGlobalContext{
     finishOverview: (data: IOverviewForm)=> void
     finishForm: (data: IAddressForm)=> void
     concludeForm: ()=> Promise<boolean>,
-    setID: (id: string)=> void
+    setPoliticData: (data: IPolitic)=> void
 }

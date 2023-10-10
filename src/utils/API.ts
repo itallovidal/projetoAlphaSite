@@ -1,6 +1,9 @@
-import {IUser} from "../@types/interfaces";
+import {IPolitic, IUser} from "../@types/interfaces";
+import {api} from "./axiosConfig.ts";
+import {AxiosError} from "axios";
 
 export async function postUser(data : IUser, collection_id: string){
+
     console.log(data)
 
     const response = await fetch(`http://localhost:3333/voters/${collection_id}`, {
@@ -15,9 +18,18 @@ export async function postUser(data : IUser, collection_id: string){
     return response
 }
 
-export async function getPolitic(id: string){
-    const response = await fetch(`http://localhost:3333/politics/${id}`)
-    const data = await response.json()
+export async function getPolitic(id: string) : Promise<IPolitic>{
+    try {
+        const response = await api.get(`/politics/${id}`)
+        return response.data
+    }catch (e: any){
 
-    return data
+        if(e instanceof AxiosError){
+            if(e.response){
+                throw new Error(e.response.data.message)
+            }
+        }
+
+        throw new Error(e)
+    }
 }

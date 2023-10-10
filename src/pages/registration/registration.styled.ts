@@ -2,13 +2,8 @@ import styled from "styled-components";
 import {show} from "../../styles/global.styled.ts";
 
 export const ContentWrapper = styled.main`
-  padding: 5rem;
   overflow: hidden;
-  height: 70vh;
-
-  //@media(max-width: 1020px){
-  //  height: auto;
-  //}
+  height: 100vh;
 
   @media(max-width: 739px){
     padding: 0;
@@ -17,13 +12,16 @@ export const ContentWrapper = styled.main`
 `
 
 export const Content = styled.article`
-  width: 95%;
+  width: 100%;
+  padding-inline: 2.5%;
   max-width: 56.25rem;
   margin: 2rem auto;
   display: grid;
   grid-template-columns: 1fr 1fr ;
   gap: 5rem;
   justify-content: space-between;
+  height: 70vh;
+  align-items: center;
   
   @media(max-width: 1020px){
     grid-template-columns: 1fr;
