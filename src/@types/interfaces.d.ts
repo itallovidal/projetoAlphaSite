@@ -13,7 +13,7 @@ export interface IPolitic{
     email: string,
     siteInstitucional: string,
     facebook: string,
-    instagram: string
+    linkedin: string
 }
 
 export interface IGlobalContext{

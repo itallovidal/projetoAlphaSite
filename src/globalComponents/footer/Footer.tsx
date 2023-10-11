@@ -1,5 +1,5 @@
 import * as Styles from './footer.styled.ts'
-import {FacebookLogo, InstagramLogo} from "phosphor-react";
+import {FacebookLogo, LinkedinLogo} from "phosphor-react";
 import React from "react";
 import {GlobalContext} from "../../context/globalContext.tsx";
 
@@ -18,8 +18,8 @@ function Footer() {
                             <FacebookLogo  size={32} weight="light" />
                         </a>
 
-                        <a  target="_blank" href={`https://${politic.instagram}`}>
-                            <InstagramLogo  size={32} weight="light" />
+                        <a  target="_blank" href={`https://${politic.linkedin}`}>
+                            <LinkedinLogo size={32} weight="light" />
                         </a>
                         {/*<YoutubeLogo size={32} weight="light" />*/}
                         {/*<TwitterLogo size={32} weight="light" />*/}

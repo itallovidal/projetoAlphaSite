@@ -1,7 +1,7 @@
 import * as Styles from '../registration.styled.ts';
 import React from "react";
 import {GlobalContext} from "../../../context/globalContext.tsx";
-import {FacebookLogo, InstagramLogo} from "phosphor-react";
+import {FacebookLogo, LinkedinLogo} from "phosphor-react";
 
 function Conclusion() {
     const [loading, setLoading] = React.useState(true)
@@ -33,8 +33,8 @@ function Conclusion() {
                     <FacebookLogo  size={48} weight="fill" />
                 </a>
 
-                <a  target="_blank" href={`https://${politic!.instagram}`}>
-                    <InstagramLogo  size={48} weight="fill" />
+                <a  target="_blank" href={`https://${politic!.linkedin}`}>
+                    <LinkedinLogo size={32} weight="light" />
                 </a>
             </Styles.Socials>
         </Styles.ConclusionWrapper>
