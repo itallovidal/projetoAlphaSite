@@ -17,7 +17,7 @@ export interface IPolitic{
 }
 
 export interface IGlobalContext{
-    politic: IPolitic | null,
+    politic: IPolitic,
     finishOverview: (data: IOverviewForm)=> void
     finishForm: (data: IAddressForm)=> void
     concludeForm: ()=> Promise<boolean>,

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import {show} from "../../styles/global.styled.ts";
 
 export const ContentWrapper = styled.main`
@@ -107,6 +107,19 @@ export const FormWrapper = styled.div`
     grid-row: 1/2;
   }
 `
+
+const pulse = keyframes`
+  0%{
+    opacity: 1;
+  }
+  50%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+`
+
 export const BannerWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -115,13 +128,17 @@ export const BannerWrapper = styled.div`
   gap: 1rem;
   max-width: 14.125rem;
   
+  .loading{
+    animation: ${pulse} 4000ms infinite;
+  }
+  
   picture{
     max-width: 300px;
     max-height: 300px;
 
     img{
-      max-width: 100%;
-      max-height: 100%;
+      width: 100%;
+      height: 100%;
       object-fit: contain;
     }
   }

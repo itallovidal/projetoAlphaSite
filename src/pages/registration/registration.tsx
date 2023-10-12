@@ -5,8 +5,8 @@ import React from 'react'
 import Footer from "../../globalComponents/footer/Footer.tsx";
 import {getPolitic} from "../../utils/API.ts";
 import ErrorPage from "../notFound/errorPage.tsx";
-
-
+import Loading from "../../globalComponents/loading/loading.tsx";
+import placeholder from '../../assets/profilePicturePlaceholder.jpg'
 
 function Registration() {
     const {id} = useParams()
@@ -31,36 +31,35 @@ function Registration() {
         return <ErrorPage errorType={"idNotFound"}/>
     }
 
-    return politic
-        ? (
+    return (
             <Styles.ContentWrapper>
-                <Styles.Content>
-                    <Styles.FormWrapper>
-                        <Styles.Header>
-                            <h1>Cadastramento</h1>
-                            <h3>Precisaremos de algumas informações.</h3>
-                        </Styles.Header>
+                    <Styles.Content>
+                        <Styles.FormWrapper>
+                            <Styles.Header>
+                                <h1>Cadastramento</h1>
+                                <h3>Precisaremos de algumas informações.</h3>
+                            </Styles.Header>
 
-                        <Styles.FormStatus step={state === null ? 1 : state === 'address' ? 2 : 3 }>
-                            <span>Dados Gerais</span>
-                            <span>Endereço</span>
-                            <span>Agradecimento</span>
-                        </Styles.FormStatus>
+                            <Styles.FormStatus step={state === null ? 1 : state === 'address' ? 2 : 3 }>
+                                <span>Dados Gerais</span>
+                                <span>Endereço</span>
+                                <span>Agradecimento</span>
+                            </Styles.FormStatus>
 
-                        <Outlet/>
+                            {politic.id ? <Outlet/> : <Loading/>}
 
-                    </Styles.FormWrapper>
-                    <Styles.BannerWrapper>
-                        <picture>
-                            <img src={politic.profile_image} alt=""/>
-                        </picture>
+                        </Styles.FormWrapper>
+                        <Styles.BannerWrapper>
+                            <picture>
+                                <img className={politic.profile_image ? '' : 'loading'} src={!politic.profile_image ? politic.profile_image : placeholder} alt=""/>
+                            </picture>
 
-                        <label htmlFor="">{politic.nome}</label>
-                    </Styles.BannerWrapper>
-                </Styles.Content>
+                            <label htmlFor="">{politic.nome ? politic.nome : "carregando.."}</label>
+                        </Styles.BannerWrapper>
+                    </Styles.Content>
                 <Footer/>
             </Styles.ContentWrapper>
-    ) : null
+    )
 }
 
 export default Registration;
