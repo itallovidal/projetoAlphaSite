@@ -51,7 +51,7 @@ function Registration() {
                         </Styles.FormWrapper>
                         <Styles.BannerWrapper>
                             <picture>
-                                <img className={politic.profile_image ? '' : 'loading'} src={!politic.profile_image ? politic.profile_image : placeholder} alt=""/>
+                                <img className={politic.profile_image ? '' : 'loading'} src={politic.profile_image ? politic.profile_image : placeholder} alt=""/>
                             </picture>
 
                             <label htmlFor="">{politic.nome ? politic.nome : "carregando.."}</label>
