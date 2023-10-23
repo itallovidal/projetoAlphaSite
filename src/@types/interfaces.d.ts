@@ -13,7 +13,7 @@ export interface IPolitic{
     email: string,
     siteInstitucional: string,
     facebook: string,
-    linkedin: string
+    linkedin: string,
 }
 
 export interface IGlobalContext{
@@ -21,5 +21,6 @@ export interface IGlobalContext{
     finishOverview: (data: IOverviewForm)=> void
     finishForm: (data: IAddressForm)=> void
     concludeForm: ()=> Promise<boolean>,
-    setPoliticData: (data: IPolitic)=> void
+    setPoliticData: (data: IPolitic)=> void,
+    userData: IUser
 }

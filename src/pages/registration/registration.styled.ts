@@ -120,6 +120,13 @@ const pulse = keyframes`
   }
 `
 
+export const LoadingGif = styled.img`
+  height: 200px;
+  width: 100%;
+  object-fit: contain;
+  opacity: 0.2;
+`
+
 export const BannerWrapper = styled.div`
   display: flex;
   flex-direction: column;

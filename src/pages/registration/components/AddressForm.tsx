@@ -2,7 +2,7 @@ import * as Styles from '../registration.styled.ts';
 import {useForm} from "react-hook-form";
 import {z} from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod';
-import {Link} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import Input from "../../../globalComponents/input/Input.tsx";
 import Button from "../../../globalComponents/button/Button.tsx";
 import React from "react";
@@ -32,7 +32,7 @@ export interface IAddressForm extends z.infer<typeof schema>{}
 
 
 function AddressForm() {
-    const {finishForm} = React.useContext(GlobalContext)
+    const {finishForm, userData} = React.useContext(GlobalContext)
     const {
         register,
         formState: {errors},
@@ -40,6 +40,15 @@ function AddressForm() {
     } = useForm<IAddressForm>({
         resolver: zodResolver(schema)
     })
+    const navigate = useNavigate()
+    const {id} = useParams()
+
+    React.useEffect(()=>{
+        if(!userData.nome){
+            navigate(`/${id}`)
+            return
+        }
+    },[])
 
     function handleStep(data: IAddressForm){
         console.log('Address finished')

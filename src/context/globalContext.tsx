@@ -49,7 +49,7 @@ function GlobalContextProvider({children} : GlobalContextProps){
     }
 
     return (
-        <GlobalContext.Provider value={{politic, finishOverview, finishForm, concludeForm, setPoliticData}}>
+        <GlobalContext.Provider value={{politic, userData,finishOverview, finishForm, concludeForm, setPoliticData}}>
             {children}
         </GlobalContext.Provider>
     )

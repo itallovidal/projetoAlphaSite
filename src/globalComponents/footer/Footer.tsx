@@ -14,11 +14,11 @@ function Footer() {
                     <h3>Redes Sociais</h3>
 
                     <Styles.SocialMediaIcons>
-                        <a  target="_blank" href={`https://${politic.facebook}`}>
+                        <a  target="_blank" href={`${politic.facebook}`}>
                             <FacebookLogo  size={32} weight="light" />
                         </a>
 
-                        <a  target="_blank" href={`https://${politic.linkedin}`}>
+                        <a  target="_blank" href={`${politic.linkedin}`}>
                             <LinkedinLogo size={32} weight="light" />
                         </a>
                         {/*<YoutubeLogo size={32} weight="light" />*/}
