@@ -11,9 +11,11 @@ export interface IPolitic{
     id: string,
     collection_id: string
     email: string,
-    siteInstitucional: string,
-    facebook: string,
-    linkedin: string,
+    siteInstitucional: string | null,
+    facebook: string | null,
+    linkedin: string | null,
+    youtube: string | null,
+    instagram: string | null,
 }
 
 export interface IGlobalContext{

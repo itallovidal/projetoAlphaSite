@@ -1,14 +1,17 @@
 import styled from "styled-components";
 
 interface IFieldWrapper{
-    $proportion: number
+    $proportion: number,
+    $opacity: number
 }
 
 export const FieldWrapper = styled.div<IFieldWrapper>`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  flex: ${({$proportion})=> $proportion };
+  flex-grow: ${({$proportion})=> $proportion };
+  opacity: ${({$opacity})=> $opacity };
+  transition: 400ms;
   
   input{
     padding: 1rem 2rem;

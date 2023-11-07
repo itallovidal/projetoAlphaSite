@@ -8,12 +8,13 @@ interface IInputProps<T extends FieldValues> extends HTMLProps<HTMLInputElement>
     proportion?: number,
     errorMessage?: string,
     register: UseFormRegister<T>,
+    opacity?: number
 }
 
-function Input<T extends FieldValues>({register, errorMessage, proportion, labelName, ...props} : IInputProps<T> ) {
+function Input<T extends FieldValues>({register, errorMessage, proportion, labelName, opacity = 1, ...props} : IInputProps<T> ) {
 
     return (
-        <Styles.FieldWrapper $proportion={proportion ? proportion : 1}>
+        <Styles.FieldWrapper $opacity={opacity} $proportion={proportion ? proportion : 1}>
             <label htmlFor={props.id}>{labelName}</label>
             <input {...props}
                    {...register(props.id as Path<T>, {

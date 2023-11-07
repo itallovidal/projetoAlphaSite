@@ -4,13 +4,11 @@ import {AxiosError} from "axios";
 
 export async function postUser(data : IUser, collection_id: string){
 
-    const response = await fetch(`https://projetoalphaapi.onrender.com/voters/${collection_id}`, {
+    const response = await api.post(`voters/${collection_id}`, data , {
         method: 'POST',
-        cache: "no-cache",
         headers:{
             "Content-Type": 'application/json',
         },
-        body: JSON.stringify(data)
     })
 
     return response

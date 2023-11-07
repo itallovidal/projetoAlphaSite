@@ -1,7 +1,7 @@
 import * as Styles from '../registration.styled.ts';
 import React from "react";
 import {GlobalContext} from "../../../context/globalContext.tsx";
-import {FacebookLogo, LinkedinLogo} from "phosphor-react";
+import {FacebookLogo, Globe, InstagramLogo, LinkedinLogo, YoutubeLogo} from "phosphor-react";
 import loadingGif from '../../../assets/loadingSend.gif'
 import {useNavigate, useParams} from "react-router-dom";
 
@@ -29,7 +29,7 @@ function Conclusion() {
 
     return loading ? <Styles.LoadingGif src={loadingGif}/> : (
         <Styles.ConclusionWrapper>
-            <p>Sucesso!</p>
+            <p>Sucesso!!</p>
 
             <p>
                 Em breve enviaremos um email com atualizações.
@@ -38,13 +38,38 @@ function Conclusion() {
             </p>
 
             <Styles.Socials>
-                <a  target="_blank" href={`${politic!.facebook}`}>
-                    <FacebookLogo  size={48} weight="fill" />
-                </a>
+                {politic.facebook && (
+                    <a  target="_blank" href={`${politic.facebook}`}>
+                        <FacebookLogo  size={32} weight="light" />
+                    </a>
+                )}
 
-                <a  target="_blank" href={`${politic!.linkedin}`}>
-                    <LinkedinLogo size={32} weight="light" />
-                </a>
+                {politic.linkedin &&(
+                    <a  target="_blank" href={`${politic.linkedin}`}>
+                        <LinkedinLogo size={32} weight="light" />
+                    </a>
+                )}
+
+
+                {politic.youtube &&(
+                    <a  target="_blank" href={`${politic.youtube}`}>
+                        <YoutubeLogo size={32} weight="light" />
+                    </a>
+                )}
+
+
+                {politic.instagram &&(
+                    <a  target="_blank" href={`${politic.instagram}`}>
+                        <InstagramLogo size={32}  weight="light"/>
+                    </a>
+                )}
+
+
+                {politic.siteInstitucional &&(
+                    <a  target="_blank" href={`${politic.siteInstitucional}`}>
+                        <Globe size={32} weight="light"/>
+                    </a>
+                )}
             </Styles.Socials>
         </Styles.ConclusionWrapper>
     );

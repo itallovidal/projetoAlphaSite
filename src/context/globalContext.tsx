@@ -40,6 +40,7 @@ function GlobalContextProvider({children} : GlobalContextProps){
     }
 
     async function concludeForm(){
+        console.log(userData)
         if(politic){
             const response =  await postUser(userData, politic.collection_id)
             return response.status === 201;

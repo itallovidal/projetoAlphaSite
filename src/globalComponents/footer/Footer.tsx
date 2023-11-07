@@ -1,5 +1,5 @@
 import * as Styles from './footer.styled.ts'
-import {FacebookLogo, LinkedinLogo} from "phosphor-react";
+import {FacebookLogo, Globe, InstagramLogo, LinkedinLogo, YoutubeLogo} from "phosphor-react";
 import React from "react";
 import {GlobalContext} from "../../context/globalContext.tsx";
 
@@ -14,15 +14,41 @@ function Footer() {
                     <h3>Redes Sociais</h3>
 
                     <Styles.SocialMediaIcons>
-                        <a  target="_blank" href={`${politic.facebook}`}>
-                            <FacebookLogo  size={32} weight="light" />
-                        </a>
 
-                        <a  target="_blank" href={`${politic.linkedin}`}>
-                            <LinkedinLogo size={32} weight="light" />
-                        </a>
-                        {/*<YoutubeLogo size={32} weight="light" />*/}
-                        {/*<TwitterLogo size={32} weight="light" />*/}
+                        {politic.facebook && (
+                            <a  target="_blank" href={`${politic.facebook}`}>
+                                <FacebookLogo  size={32} weight="light" />
+                            </a>
+                        )}
+
+                        {politic.linkedin &&(
+                            <a  target="_blank" href={`${politic.linkedin}`}>
+                                <LinkedinLogo size={32} weight="light" />
+                            </a>
+                        )}
+
+
+                        {politic.youtube &&(
+                            <a  target="_blank" href={`${politic.youtube}`}>
+                                <YoutubeLogo size={32} weight="light" />
+                            </a>
+                        )}
+
+
+                        {politic.instagram &&(
+                            <a  target="_blank" href={`${politic.instagram}`}>
+                                <InstagramLogo size={32}  weight="light"/>
+                            </a>
+                        )}
+
+
+                        {politic.siteInstitucional &&(
+                            <a  target="_blank" href={`${politic.siteInstitucional}`}>
+                                <Globe size={32} weight="light"/>
+                            </a>
+                        )}
+
+
                     </Styles.SocialMediaIcons>
 
                     {/*<picture>*/}

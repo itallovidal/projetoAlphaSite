@@ -7,22 +7,19 @@ import Input from "../../../globalComponents/input/Input.tsx";
 import Button from "../../../globalComponents/button/Button.tsx";
 import React from "react";
 import {GlobalContext} from "../../../context/globalContext.tsx";
+import {bairroValidation, cepValidation, ruaValidation} from "./validations.ts";
+
 
 // schema de validacão
 const schema =  z.object({
-    cep:   z.string().min(8, {message: 'CEP precisa de 8 caracteres.'})
-            .max(8,{message: 'Máximo de 8 caracteres.'})
-            .regex(/\d{5}\d{3}/, {message: 'Digite um cep válido'}),
-    bairro: z.string()
-        .min(3, {message:"Mínimo de 3 caracteres."}),
+    cep:   z.string().optional(),
+    bairro: z.string().optional(),
+    rua: z.string().optional(),
+    cidade: z.string().nonempty({message: 'Por favor, coloque a cidade.'}),
     uf: z.string({
         required_error: 'Escreva o uf'
         }).min(2, {message: 'Mínimo de 2 caracteres.'})
         .max(2, {message: 'Máximo de 2 caracteres.'}),
-    rua: z.string({
-        required_error: 'Digite a rua, por favor.'
-    }).min(3,  {message: 'Pelo menos 3 caracteres.'}),
-    cidade: z.string().nonempty({message: 'Por favor, coloque a cidade.'})
 })
 
 // interface inferida do schema
@@ -35,13 +32,18 @@ function AddressForm() {
     const {finishForm, userData} = React.useContext(GlobalContext)
     const {
         register,
-        formState: {errors},
+        setError,
+        formState: {errors, dirtyFields},
         handleSubmit
     } = useForm<IAddressForm>({
         resolver: zodResolver(schema)
     })
     const navigate = useNavigate()
     const {id} = useParams()
+
+    const opcty = dirtyFields.cep || dirtyFields.rua || dirtyFields.bairro ? 1 : 0.3
+
+
 
     React.useEffect(()=>{
         if(!userData.nome){
@@ -50,8 +52,42 @@ function AddressForm() {
         }
     },[])
 
+    console.log()
+
     function handleStep(data: IAddressForm){
         console.log('Address finished')
+
+        if(data.cep && data.cep?.length > 0){
+            const cepResult = cepValidation.safeParse(data.cep)
+
+            if(!cepResult.success){
+                const errorMsg = JSON.parse(cepResult.error.message)[0].message
+                setError("cep", {type: "custom", message: errorMsg})
+                return
+            }
+        }
+
+        if(data.rua && data.rua?.length > 0){
+            const ruaResult = ruaValidation.safeParse(data.rua)
+            if(!ruaResult.success){
+                const errorMsg = JSON.parse(ruaResult.error.message)[0].message
+                setError("rua", {type: "custom", message: errorMsg})
+                return
+            }
+        }
+
+        if(data.bairro && data.bairro?.length > 0){
+            const bairroResult = bairroValidation.safeParse(data.bairro)
+
+            if(!bairroResult.success){
+                const errorMsg = JSON.parse(bairroResult.error.message)[0].message
+                setError("bairro", {type: "custom", message: errorMsg})
+                return
+            }
+        }
+
+
+        console.log("tudo correto")
         finishForm(data)
     }
 
@@ -61,23 +97,13 @@ function AddressForm() {
             <Styles.FieldSet>
                 <Input <IAddressForm>
                     register={register}
-                    errorMessage={errors.cep?.message}
-                    labelName={'CEP'}
+                    errorMessage={errors.cidade?.message}
+                    proportion={2}
+                    labelName={'Cidade'}
                     type={'text'}
-                    id={'cep'}
-                    maxLength={8}
-                    placeholder={'Ex.: 21320340'}/>
+                    id={'cidade'}
+                    placeholder={'Ex.: Rio de Janeiro'}/>
 
-                <Input <IAddressForm>
-                    register={register}
-                    errorMessage={errors.bairro?.message}
-                    labelName={'Bairro'}
-                    type={'text'}
-                    id={'bairro'}
-                    placeholder={'Ex.: Madureira'}/>
-            </Styles.FieldSet>
-
-            <Styles.FieldSet>
                 <Input <IAddressForm>
                     register={register}
                     errorMessage={errors.uf?.message}
@@ -88,25 +114,42 @@ function AddressForm() {
                     maxLength={2}
                     placeholder={'Ex.: RJ'}/>
 
-                <Input <IAddressForm>
-                    register={register}
-                    errorMessage={errors.rua?.message}
-                    proportion={4}
-                    labelName={'Rua'}
-                    type={'text'}
-                    id={'rua'}
-                    placeholder={'Ex.: Rua santo antônio'}/>
             </Styles.FieldSet>
 
             <Styles.FieldSet>
                 <Input <IAddressForm>
                     register={register}
-                    errorMessage={errors.cidade?.message}
-                    proportion={1}
-                    labelName={'Cidade'}
+                    errorMessage={errors.cep?.message}
+                    labelName={'CEP (Opcional)'}
                     type={'text'}
-                    id={'cidade'}
-                    placeholder={'Ex.: Rio de Janeiro'}/>
+                    id={'cep'}
+                    maxLength={8}
+                    opacity={opcty}
+                    placeholder={'Ex.: 21320340'}/>
+
+                <Input <IAddressForm>
+                    register={register}
+                    errorMessage={errors.bairro?.message}
+                    labelName={'Bairro (Opcional)'}
+                    type={'text'}
+                    id={'bairro'}
+                    opacity={opcty}
+                    placeholder={'Ex.: Madureira'}/>
+
+
+
+            </Styles.FieldSet>
+
+            <Styles.FieldSet>
+                <Input <IAddressForm>
+                    register={register}
+                    errorMessage={errors.rua?.message}
+                    proportion={4}
+                    labelName={'Rua (Opcional)'}
+                    type={'text'}
+                    id={'rua'}
+                    opacity={opcty}
+                    placeholder={'Ex.: Rua santo antônio'}/>
 
                 <div id={'container_button'}>
                     <Link to={'/'}>
