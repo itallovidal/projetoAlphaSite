@@ -8,15 +8,9 @@ import AddressForm from "./pages/registration/components/AddressForm.tsx";
 import Conclusion from "./pages/registration/components/Conclusion.tsx";
 import GlobalContextProvider from "./context/globalContext.tsx";
 import ErrorPage from "./pages/notFound/errorPage.tsx";
-import React from "react";
-import {api} from "./utils/axiosConfig.ts";
 
 function App() {
-    React.useEffect(()=>{
-        setInterval(async function () {
-            await api.get('politics').then(data => console.log(data))
-        }, 960000);
-    }, [])
+
 
   return (
     <ThemeProvider theme={mainTheme}>

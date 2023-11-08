@@ -101,7 +101,7 @@ function OverviewForm() {
                     register={register}
                     errorMessage={errors.telefone?.message}
                     proportion={1}
-                    labelName={'Whatsapp'}
+                    labelName={'Telefone'}
                     type={'text'}
                     maxLength={15}
                     id={'telefone'}
