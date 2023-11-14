@@ -14,16 +14,16 @@ const schema =  z.object({
             .min(3, {message:"Mínimo de 3 caracteres."}),
     sobrenome: z.string()
             .min(3, {message:"Mínimo de 3 caracteres."}),
-    data_nascimento: z.string().refine((data)=>{
+    data_nascimento: z.string().nonempty("Não deixe em branco!").refine((data)=>{
         const dia = Number(data.substring(0,2))
-        return !(dia < 0 || dia > 31);
+        return !(dia < 0 || dia > 31 || isNaN(dia));
 
     }, {message: "Adicione um dia válido."}).refine((data)=>{
         const mes = Number(data.substring(3,5))
-        return !(mes < 0 || mes > 12);
+        return !(mes < 0 || mes > 12 || isNaN(mes));
     }, {message: "Adicione um mês válido."}).refine((data)=>{
         const ano = Number(data.substring(6,10))
-        return !(ano < 0 || ano > 2024);
+        return !(ano < 0 || ano > 2024 || isNaN(ano));
     }, {message: "Adicione um ano válido."}),
     email: z.string()
             .email({message: 'email inválido.'}),
