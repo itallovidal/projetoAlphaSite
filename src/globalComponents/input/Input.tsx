@@ -22,7 +22,7 @@ function Input<T extends FieldValues>({register, errorMessage, proportion, label
         <Styles.FieldWrapper $opacity={opacity} $proportion={proportion ? proportion : 1}>
             <label htmlFor={props.id}>{labelName}</label>
             {props.id === "data_nascimento"
-            ? <InputMask {...props} {...register(props.id as Path<T>)} mask={"99/99/9999"}  />
+            ? <InputMask placeholder={'dd/mm/aaaa'} {...props} {...register(props.id as Path<T>)} mask={"99/99/9999"}  />
             : <input {...props}
                      {...register(props.id as Path<T>)}/>
             }
