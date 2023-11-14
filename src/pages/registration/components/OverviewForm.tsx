@@ -14,12 +14,22 @@ const schema =  z.object({
             .min(3, {message:"Mínimo de 3 caracteres."}),
     sobrenome: z.string()
             .min(3, {message:"Mínimo de 3 caracteres."}),
-    data_nascimento: z.coerce.string(),
+    data_nascimento: z.string().refine((data)=>{
+        const dia = Number(data.substring(0,2))
+        return !(dia < 0 || dia > 31);
+
+    }, {message: "Adicione um dia válido."}).refine((data)=>{
+        const mes = Number(data.substring(3,5))
+        return !(mes < 0 || mes > 12);
+    }, {message: "Adicione um mês válido."}).refine((data)=>{
+        const ano = Number(data.substring(6,10))
+        return !(ano < 0 || ano > 2024);
+    }, {message: "Adicione um ano válido."}),
     email: z.string()
             .email({message: 'email inválido.'}),
     telefone: z.string()
         .nonempty({message:"Digite o número de celular."})
-        .regex(/^\([1-9]{2}\) (?:[2-8]|9[0-9])[0-9]{3}\-[0-9]{4}$/, {message: "Número inválido."})
+        .regex(/^\([1-9]{2}\) (?:[2-8]|9[0-9])[0-9]{3}-[0-9]{4}$/, {message: "Número inválido."})
 })
 
 // interface inferida do schema
@@ -79,10 +89,9 @@ function OverviewForm() {
             <Styles.FieldSet>
                 <Input <IOverviewForm>
                     register={register}
-                    errorMessage={errors.data_nascimento?.message && 'Selecione uma data.'}
+                    errorMessage={errors.data_nascimento?.message}
                     proportion={1}
                     labelName={'Data de Nascimento'}
-                    type={'date'}
                     id={'data_nascimento'}
                     />
 

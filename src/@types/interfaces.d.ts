@@ -5,6 +5,8 @@ export interface IUser extends IOverviewForm{
     endereco: IAddressForm
 }
 
+declare module 'react-input-mask';
+
 export interface IPolitic{
     nome: string,
     profile_image: string,
