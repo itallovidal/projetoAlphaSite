@@ -4,20 +4,18 @@ import {AxiosError} from "axios";
 
 export async function postUser(data : IUser, collection_id: string){
 
-    const response = await api.post(`voters/${collection_id}`, data , {
+    return await api.post(`client/register/${collection_id}`, data, {
         method: 'POST',
-        headers:{
+        headers: {
             "Content-Type": 'application/json',
         },
     })
-
-    return response
 }
 
 export async function getPolitic(id: string) : Promise<IPolitic>{
     try {
-        const response = await api.get(`/politics/${id}`)
-        return response.data
+        const {data} = await api.get(`/contractor/${id}`)
+        return data
     }catch (e: any){
 
         if(e instanceof AxiosError){
