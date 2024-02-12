@@ -246,4 +246,8 @@ export const Socials = styled.main`
     a{
       color: black;
     }
+  
+  h3{
+    margin-bottom: 1rem;
+  }
 `

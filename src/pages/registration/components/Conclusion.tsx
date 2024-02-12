@@ -1,7 +1,7 @@
 import * as Styles from '../registration.styled.ts';
 import React from "react";
 import {GlobalContext} from "../../../context/globalContext.tsx";
-import {FacebookLogo, Globe, InstagramLogo, LinkedinLogo, YoutubeLogo} from "phosphor-react";
+import {FacebookLogo, Globe, InstagramLogo, LinkedinLogo, WhatsappLogo, YoutubeLogo} from "phosphor-react";
 import loadingGif from '../../../assets/loadingSend.gif'
 import {useNavigate, useParams} from "react-router-dom";
 
@@ -20,6 +20,11 @@ function Conclusion() {
         concludeForm()
             .then(()=>{
             setLoading(false)
+            setTimeout(function() {
+                if(politic.whatsappCommunity){
+                    window.location.href = politic.whatsappCommunity;
+                }
+            }, 5000);
         })
             .catch(()=>{
                 console.log('error')
@@ -32,12 +37,21 @@ function Conclusion() {
             <p>Sucesso!!</p>
 
             <p>
-                Em breve enviaremos um email com atualizações.
-                Enquanto isso, conecte-se conosco através
-                das nossas redes sociais.
+                Bem vindo à família Carrilho! Conecte-se conosco através das mídias sociais abaixo, e fique por dentro das
+                atualizações em primeira mão entrando em nossa comunidade do whatsApp!
             </p>
 
             <Styles.Socials>
+                {politic.whatsappCommunity && (
+                    <>
+                        <h3> Iremos lhe enviar para o whatsapp já já.</h3>
+                        <a  target="_blank" href={`${politic.whatsappCommunity}`}>
+                            <WhatsappLogo size={32} weight="light" />
+                        </a>
+                    </>
+
+                )}
+
                 {politic.facebook && (
                     <a  target="_blank" href={`${politic.facebook}`}>
                         <FacebookLogo  size={32} weight="light" />

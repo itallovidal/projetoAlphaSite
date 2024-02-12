@@ -18,6 +18,7 @@ export interface IPolitic{
     linkedin: string | null,
     youtube: string | null,
     instagram: string | null,
+    whatsappCommunity: string | null
 }
 
 export interface IGlobalContext{

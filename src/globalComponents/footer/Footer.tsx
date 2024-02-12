@@ -1,5 +1,5 @@
 import * as Styles from './footer.styled.ts'
-import {FacebookLogo, Globe, InstagramLogo, LinkedinLogo, YoutubeLogo} from "phosphor-react";
+import {FacebookLogo, Globe, InstagramLogo, LinkedinLogo, WhatsappLogo, YoutubeLogo} from "phosphor-react";
 import React from "react";
 import {GlobalContext} from "../../context/globalContext.tsx";
 
@@ -14,6 +14,12 @@ function Footer() {
                     <h3>Redes Sociais</h3>
 
                     <Styles.SocialMediaIcons>
+
+                        {politic.whatsappCommunity && (
+                            <a  target="_blank" href={`${politic.whatsappCommunity}`}>
+                                <WhatsappLogo size={32} color={'#65B741'} weight="fill" />
+                            </a>
+                        )}
 
                         {politic.facebook && (
                             <a  target="_blank" href={`${politic.facebook}`}>
