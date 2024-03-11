@@ -1,18 +1,18 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Wrapper = styled.section`
-  h2{
+  h2 {
     text-align: center;
   }
-  picture{
+  picture {
     height: 15.25rem;
     display: block;
-    
-    img{
+
+    img {
       height: 100%;
       width: 100%;
       object-fit: contain;
-      opacity: .4;
+      opacity: 0.4;
     }
   }
 `

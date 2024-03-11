@@ -5,11 +5,13 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
+    '@rocketseat/eslint-config/node'
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh'],
   rules: {
+    "no-useless-constructor": "off",
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },

@@ -1,4 +1,4 @@
-import {createGlobalStyle, keyframes} from "styled-components";
+import { createGlobalStyle, keyframes } from 'styled-components'
 
 export const show = keyframes`
   100%{
@@ -15,7 +15,7 @@ export const GlobalStyles = createGlobalStyle`
   }
   
   body, label, input, button, textarea{
-    font-family: ${({theme})=> theme.FONT.PRIMARY};
+    font-family: ${({ theme }) => theme.FONT.PRIMARY};
   }
   
   main{
@@ -23,4 +23,3 @@ export const GlobalStyles = createGlobalStyle`
     animation: ${show} 500ms forwards;
   }
 `
-

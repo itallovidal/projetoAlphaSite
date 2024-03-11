@@ -1,5 +1,3 @@
 {
-  "rewrites":  [
-    {"source": "/:id", "destination": "/"}
-  ]
+  "rewrites": [{ "source": "/:id", "destination": "/" }]
 }

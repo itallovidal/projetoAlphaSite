@@ -1,11 +1,11 @@
-import styled, {keyframes} from "styled-components";
-import {show} from "../../styles/global.styled.ts";
+import styled, { keyframes } from 'styled-components'
+import { show } from '../../styles/global.styled.ts'
 
 export const ContentWrapper = styled.main`
   overflow: hidden;
   height: 100vh;
 
-  @media(max-width: 739px){
+  @media (max-width: 739px) {
     padding: 0;
     height: auto;
   }
@@ -17,19 +17,19 @@ export const Content = styled.article`
   max-width: 56.25rem;
   margin: 2rem auto;
   display: grid;
-  grid-template-columns: 1fr 1fr ;
+  grid-template-columns: 1fr 1fr;
   gap: 5rem;
   justify-content: space-between;
   height: 70vh;
   align-items: center;
-  
-  @media(max-width: 1020px){
+
+  @media (max-width: 1020px) {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     position: relative;
   }
 
-  @media(max-width: 739px){
+  @media (max-width: 739px) {
     gap: 0;
     width: 90%;
     height: auto;
@@ -38,72 +38,70 @@ export const Content = styled.article`
 
 export const Header = styled.header`
   margin-bottom: 2rem;
-  
-  h1{
+
+  h1 {
     font-size: 4rem;
     font-weight: bold;
     margin-block: 0;
   }
-  
-  h3{
+
+  h3 {
     font-size: 1.2rem;
     font-weight: normal;
     padding-bottom: 1rem;
-    
+
     position: relative;
     margin-bottom: 1rem;
-    
-    &:before{
+
+    &:before {
       position: absolute;
       content: '';
       bottom: 0;
       width: 25%;
       height: 5px;
-      background-color: ${({theme})=> theme.COLORS.PRIMARY};
+      background-color: ${({ theme }) => theme.COLORS.PRIMARY};
     }
   }
 
-  @media(max-width: 739px){
-    h1{
+  @media (max-width: 739px) {
+    h1 {
       font-size: 2.5rem;
     }
   }
 `
 
-interface FormStatusProps{
-    step: 1 | 2 | 3;
+interface FormStatusProps {
+  step: 1 | 2 | 3
 }
 export const FormStatus = styled.div<FormStatusProps>`
-  
   position: absolute;
   left: -12rem;
   width: 10rem;
-  
+
   display: flex;
   flex-direction: column;
   gap: 1rem;
   align-items: flex-end;
-  
-  @media(max-width: 1200px){
+
+  @media (max-width: 1200px) {
     position: initial;
     flex-direction: row;
-    width: 100% ;
+    width: 100%;
     margin-bottom: 2rem;
   }
 
-  
-  span{
-    opacity: .2;
+  span {
+    opacity: 0.2;
     transition: 400ms;
-  }  
-  span:nth-child(${({step})=> step}){
+  }
+  span:nth-child(${({ step }) => step}) {
     opacity: 1;
   }
 `
 export const FormWrapper = styled.div`
-    position: relative;
+  position: relative;
 
-  @media(max-width: 1020px){
+  @media (max-width: 1020px) {
     grid-row: 1/2;
   }
 `
@@ -134,57 +132,54 @@ export const BannerWrapper = styled.div`
   padding-top: 2rem;
   gap: 1rem;
   max-width: 14.125rem;
-  
-  .loading{
+
+  .loading {
     animation: ${pulse} 4000ms infinite;
   }
-  
-  picture{
+
+  picture {
     max-width: 300px;
     max-height: 300px;
 
-    img{
+    img {
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
   }
 
-  @media(min-width: 740px) and (max-width: 1020px){
+  @media (min-width: 740px) and (max-width: 1020px) {
     grid-row: 1/2;
     position: absolute;
     top: -5%;
     align-items: flex-end;
     right: 0;
-    
-    picture{
+
+    picture {
       display: block;
       overflow: initial;
       width: 6rem;
       height: 6rem;
 
-      
-      img{
+      img {
         width: 100%;
         height: 100%;
         object-fit: contain;
       }
     }
-    
-    
   }
 
-  @media(max-width: 739px){
+  @media (max-width: 739px) {
     margin: 0 auto;
   }
-  
-  picture{
+
+  picture {
     overflow: hidden;
     border-radius: 8px;
   }
-  
-  label{
-    background-color: ${({theme})=> theme.COLORS.PRIMARY};
+
+  label {
+    background-color: ${({ theme }) => theme.COLORS.PRIMARY};
     padding: 1rem;
     color: white;
     width: 100%;
@@ -203,51 +198,52 @@ export const FieldSet = styled.fieldset`
   padding: 0;
   justify-content: space-between;
 
-  #rua, #cidade{
+  #rua,
+  #cidade {
     text-transform: capitalize;
   }
-  
-  #container_button{
+
+  #container_button {
     display: flex;
     gap: 1rem;
     justify-content: flex-end;
   }
-  
-  button{
+
+  button {
     margin-top: calc(1.15rem + 1rem);
     margin-right: 0;
   }
-  
-  @media(max-width: 739px){
+
+  @media (max-width: 739px) {
     flex-direction: column;
     gap: 0;
-        
-    div{
+
+    div {
       width: 100% !important;
     }
   }
 `
 
 export const Form = styled.form`
-    opacity: 0;
-    transform: translateY(10px);
-  
+  opacity: 0;
+  transform: translateY(10px);
+
   animation: ${show} 400ms 400ms forwards;
 `
 // -------------------------
 
 export const ConclusionWrapper = styled.main`
-  p{
+  p {
     margin-bottom: 2rem;
   }
 `
 
 export const Socials = styled.main`
-    a{
-      color: black;
-    }
-  
-  h3{
+  a {
+    color: black;
+  }
+
+  h3 {
     margin-bottom: 1rem;
   }
 `

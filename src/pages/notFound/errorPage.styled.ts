@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Wrapper = styled.main`
   height: 100vh;
@@ -13,8 +13,8 @@ export const Wrapper = styled.main`
     font-size: 4rem;
     font-weight: normal;
   }
-  
-  h2{
+
+  h2 {
     margin-bottom: 1rem;
     font-size: 3rem;
   }
@@ -31,7 +31,6 @@ export const Wrapper = styled.main`
       object-fit: cover;
       height: 50vh;
       width: 100%;
-
     }
   }
 
@@ -47,8 +46,8 @@ export const Wrapper = styled.main`
     z-index: -1;
   }
 
-  @media(max-width: 800px){
-    h2{
+  @media (max-width: 800px) {
+    h2 {
       font-size: 2.2rem;
     }
 
